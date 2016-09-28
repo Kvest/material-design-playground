@@ -24,5 +24,10 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new SamplesAdapter(this));
+
+        //add divider for list
+        int dividerHeight = getResources().getDimensionPixelSize(R.dimen.samples_item_divider_height);
+        int dividerColor = getResources().getColor(R.color.colorPrimary);
+        recyclerView.addItemDecoration(new DividerDecoration(dividerHeight, dividerColor));
     }
 }

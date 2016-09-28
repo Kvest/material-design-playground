@@ -4,5 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/samples_item_height"
     android:padding="@dimen/samples_item_padding"
+    android:gravity="center_vertical"
     android:textSize="@dimen/samples_item_text_size"
     android:textColor="@color/samples_item_text_color"/>

@@ -37,7 +37,7 @@ public class SamplesAdapter extends RecyclerView.Adapter<SamplesAdapter.ViewHold
         return items.length;
     }
 
-    private void startActivity(Class<AppCompatActivity> clazz) {
+    private void startActivity(Class<? extends AppCompatActivity> clazz) {
         Intent intent = new Intent(context, clazz);
         context.startActivity(intent);
     }
@@ -59,9 +59,9 @@ public class SamplesAdapter extends RecyclerView.Adapter<SamplesAdapter.ViewHold
 
     private static class Item {
         String name;
-        Class<AppCompatActivity> clazz;
+        Class<? extends AppCompatActivity> clazz;
 
-        public Item(String name, Class<AppCompatActivity> clazz) {
+        public Item(String name, Class<? extends AppCompatActivity> clazz) {
             this.name = name;
             this.clazz = clazz;
         }
