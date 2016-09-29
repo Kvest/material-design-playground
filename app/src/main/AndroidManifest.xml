@@ -18,5 +18,8 @@
         <activity
             android:name=".expanding_list.ExpandableListActivity"
             android:label="@string/expandable_list" />
+        <activity
+            android:name=".item_selection.ItemSelectionActivity"
+            android:label="@string/item_selection" />
     </application>
 </manifest>

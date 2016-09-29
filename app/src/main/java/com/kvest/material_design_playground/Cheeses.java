@@ -4,7 +4,7 @@ package com.kvest.material_design_playground;
  * Created by kvest on 9/28/16.
  */
 public class Cheeses {
-    public static final String[] sCheeseStrings = {
+    public static final String[] CHEESE_STRINGS = {
             "Abbaye de Belloc", "Abbaye du Mont des Cats", "Abertam", "Abondance", "Ackawi",
             "Acorn", "Adelost", "Affidelice au Chablis", "Afuega'l Pitu", "Airag", "Airedale",
             "Aisy Cendre", "Allgauer Emmentaler", "Alverca", "Ambert", "American Cheese",
