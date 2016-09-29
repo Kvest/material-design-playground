@@ -8,20 +8,23 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.kvest.material_design_playground.expanding_list.ExpandableListActivity;
+
 /**
  * Created by user on 9/28/16.
  */
 public class SamplesAdapter extends RecyclerView.Adapter<SamplesAdapter.ViewHolder> {
-    private Item[] items = {};
+    private Item[] items = {new Item("Expandable list", ExpandableListActivity.class)};
     private Context context;
+    private final LayoutInflater layoutInflater;
 
     public SamplesAdapter(Context context) {
         this.context = context;
+        this.layoutInflater = LayoutInflater.from(context);
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         TextView name = (TextView)layoutInflater.inflate(R.layout.samples_list_item, parent, false);
 
         return new ViewHolder(name);

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">material-design-playground</string>
     <string name="main_activity_label">Samples</string>
+    <string name="expandable_list">Expandable list</string>
 </resources>

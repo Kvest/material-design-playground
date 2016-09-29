@@ -15,5 +15,8 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".expanding_list.ExpandableListActivity"
+            android:label="@string/expandable_list" />
     </application>
 </manifest>
