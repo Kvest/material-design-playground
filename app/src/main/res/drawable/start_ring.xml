@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:viewportWidth="100"
+    android:viewportHeight="100"
+    android:width="200dp"
+    android:height="200dp">
+    <path
+        android:name="ring"
+        android:fillColor="#000000"
+        android:pathData="@string/start_ring" />
+</vector>

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.kvest.material_design_playground.expanding_list.ExpandableListActivity;
 import com.kvest.material_design_playground.item_selection.ItemSelectionActivity;
+import com.kvest.material_design_playground.vector_animation.VectorAnimationActivity;
 
 /**
  * Created by user on 9/28/16.
@@ -18,6 +19,7 @@ public class SamplesAdapter extends RecyclerView.Adapter<SamplesAdapter.ViewHold
     private Item[] items = {
             new Item("Expandable list", ExpandableListActivity.class),
             new Item("Item selection", ItemSelectionActivity.class),
+            new Item("Vector animation", VectorAnimationActivity.class),
     };
     private Context context;
     private final LayoutInflater layoutInflater;

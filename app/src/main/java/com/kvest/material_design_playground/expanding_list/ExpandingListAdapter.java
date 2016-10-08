@@ -78,16 +78,45 @@ public class ExpandingListAdapter extends RecyclerView.Adapter<ExpandingListAdap
             image.setImageBitmap(bitmap);
             name.setText(item.name);
             description.setText(item.description);
+            //force collapse
+            description.getLayoutParams().height = 0;
 
             itemView.setOnClickListener(v -> {
-                TransitionManager.beginDelayedTransition(parent);
+                ExpandListTransition t = new ExpandListTransition();
+                TransitionManager.beginDelayedTransition(parent, t);
                 toggleVisibility(description);
             });
         }
 
-        private void toggleVisibility(View view) {
+        private void toggleVisibility(final View view) {
             view.getLayoutParams().height = view.getLayoutParams().height == 0 ? ViewGroup.LayoutParams.WRAP_CONTENT : 0;
             view.requestLayout();
+
+//            final int start = view.getHeight();
+//
+//            view.getLayoutParams().height = view.getLayoutParams().height == 0 ? ViewGroup.LayoutParams.WRAP_CONTENT : 0;
+//            view.requestLayout();
+
+
+//            final ViewTreeObserver observer = view.getViewTreeObserver();
+//            observer.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+//                @Override
+//                public boolean onPreDraw() {
+//                    observer.removeOnPreDrawListener(this);
+//
+//                    ValueAnimator animator = ValueAnimator.ofInt(start, view.getHeight());
+//                    animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//                        @Override
+//                        public void onAnimationUpdate(ValueAnimator animation) {
+//                            view.getLayoutParams().height = (Integer) animation.getAnimatedValue();
+//                            view.requestLayout();
+//                        }
+//                    });
+//                    animator.start();
+//
+//                    return false;
+//                }
+//            });
 
             //view.setVisibility(view.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
         }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="start_ring">
+        M25,50 a25,25 0 0,0 50,0 h5
+        a30,30 0 0,1 -60,0 h5
+        a25,25 0 1,1 50,0 h5
+        a30,30 0 0,0 -60,0 h5
+    </string>
+    <string name="finish_ring">
+        M5,50 a45,45 0 0,0 90,0 h1
+        a46,46 0 0,1 -92,0 h1
+        a45,45 0 1,1 90,0 h1
+        a46,46 0 0,0 -92,0 h1
+    </string>
+</resources>

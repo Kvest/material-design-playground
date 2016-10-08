@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.kvest.material_design_playground.TestView
+        android:id="@+id/red"
+        android:layout_width="100dip"
+        android:layout_height="100dip"
+        android:layout_gravity="left|top"
+        android:background="#ff0000"/>
+    <com.kvest.material_design_playground.TestView
+        android:id="@+id/green"
+        android:layout_width="100dip"
+        android:layout_height="100dip"
+        android:layout_gravity="right|top"
+        android:background="#00ff00"/>
+    <com.kvest.material_design_playground.TestView
+        android:id="@+id/blue"
+        android:transitionName="trName"
+        android:layout_width="100dip"
+        android:layout_height="100dip"
+        android:layout_gravity="left|bottom"
+        android:background="#0000ff"/>
+    <Button
+        android:id="@+id/show"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Test"/>
+    <TextView
+        android:id="@+id/text"
+        android:layout_gravity="right|bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="This is text"/>
+</FrameLayout>

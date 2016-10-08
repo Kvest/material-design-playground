@@ -21,5 +21,9 @@
         <activity
             android:name=".item_selection.ItemSelectionActivity"
             android:label="@string/item_selection" />
+        <activity
+            android:name=".vector_animation.VectorAnimationActivity"
+            android:label="@string/vector_animation"/>
+        <activity android:name=".TestActivity" />
     </application>
 </manifest>
