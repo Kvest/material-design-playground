@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
-import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +14,15 @@ import android.widget.TextView;
 import com.kvest.material_design_playground.R;
 import com.kvest.material_design_playground.Utils;
 
+import java.util.List;
+
 /**
  * Created by kvest on 9/28/16.
  */
 public class ExpandingListAdapter extends RecyclerView.Adapter<ExpandingListAdapter.ViewHolder> {
     private static final String LONG_LOREM = "Mauris dapibus convallis massa, vitae ultrices est ultricies ut. Nam porttitor et metus ac bibendum. Nam at justo vitae felis lacinia ultrices laoreet ut arcu. Nam ac purus et turpis convallis mollis. Integer lorem eros, hendrerit imperdiet interdum vitae, sagittis eget ipsum. Donec dignissim tortor at felis fringilla, sed dignissim diam vulputate. Nam sit amet facilisis massa. Suspendisse posuere quam quis augue dapibus venenatis.";
+
+    private static String PAYLOAD_EXTEND = "PAYLOAD_EXTEND";
 
     private ExpandableListItem[] items = {
             new ExpandableListItem("Chameleon", LONG_LOREM, R.drawable.chameleon),
@@ -53,23 +57,40 @@ public class ExpandingListAdapter extends RecyclerView.Adapter<ExpandingListAdap
     }
 
     @Override
+    public void onBindViewHolder(ViewHolder holder, int position, List<Object> payloads) {
+        if (payloads.isEmpty()) {
+            holder.bind(items[position]);
+        } else {
+            holder.bind(items[position], payloads);
+        }
+    }
+
+    @Override
     public int getItemCount() {
         return items.length;
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-        private ViewGroup parent;
+    class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView image;
         private TextView name;
         private TextView description;
 
         public ViewHolder(ViewGroup parent, View itemView) {
             super(itemView);
-
-            this.parent = parent;
+            Log.d("KVEST_TAG", "Create ViewHolder: ");
             image = (ImageView)itemView.findViewById(R.id.image);
             name = (TextView)itemView.findViewById(R.id.name);
             description = (TextView)itemView.findViewById(R.id.description);
+
+            itemView.setOnClickListener(v -> {
+                int adapterPos = getAdapterPosition();
+                if (adapterPos != RecyclerView.NO_POSITION) {
+                    ExpandableListItem item = items[adapterPos];
+
+                    item.isExpanded = !item.isExpanded;
+                    notifyItemChanged(adapterPos, PAYLOAD_EXTEND);
+                }
+            });
         }
 
         public void bind(ExpandableListItem item) {
@@ -78,17 +99,21 @@ public class ExpandingListAdapter extends RecyclerView.Adapter<ExpandingListAdap
             image.setImageBitmap(bitmap);
             name.setText(item.name);
             description.setText(item.description);
-            //force collapse
-            description.getLayoutParams().height = 0;
-
-            itemView.setOnClickListener(v -> {
-                ExpandListTransition t = new ExpandListTransition();
-                TransitionManager.beginDelayedTransition(parent, t);
-                toggleVisibility(description);
-            });
+            description.getLayoutParams().height = item.isExpanded ? ViewGroup.LayoutParams.WRAP_CONTENT : 0;
         }
 
-        private void toggleVisibility(final View view) {
+        public void bind(ExpandableListItem item, List<Object> payloads) {
+            for (Object payload : payloads) {
+                if (PAYLOAD_EXTEND.equals(payload)) {
+                    description.getLayoutParams().height = item.isExpanded ? ViewGroup.LayoutParams.WRAP_CONTENT : 0;
+                    description.requestLayout();
+                } else {
+                    throw new IllegalArgumentException("Unknown payload " + payload);
+                }
+            }
+        }
+
+/*        private void toggleVisibility(final View view) {
             view.getLayoutParams().height = view.getLayoutParams().height == 0 ? ViewGroup.LayoutParams.WRAP_CONTENT : 0;
             view.requestLayout();
 
@@ -119,6 +144,6 @@ public class ExpandingListAdapter extends RecyclerView.Adapter<ExpandingListAdap
 //            });
 
             //view.setVisibility(view.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
-        }
+        }*/
     }
 }

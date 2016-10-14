@@ -9,10 +9,12 @@ public class ExpandableListItem {
     final String name;
     final String description;
     final int imgResource;
+    boolean isExpanded;
 
     public ExpandableListItem(String name, String description, @DrawableRes int imgResource) {
         this.name = name;
         this.description = description;
         this.imgResource = imgResource;
+        this.isExpanded = false;
     }
 }

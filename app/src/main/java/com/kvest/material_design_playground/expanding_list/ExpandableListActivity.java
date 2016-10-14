@@ -22,10 +22,6 @@ public class ExpandableListActivity extends AppCompatActivity {
         expandableList.setHasFixedSize(true);
         expandableList.setLayoutManager(new LinearLayoutManager(this));
         expandableList.setAdapter(new ExpandingListAdapter(this));
-
-        //add divider for the list
-        int dividerHeight = getResources().getDimensionPixelSize(R.dimen.samples_item_divider_height);
-        int dividerColor = getResources().getColor(R.color.colorPrimary);
-        expandableList.addItemDecoration(new DividerDecoration(dividerHeight, dividerColor));
+        expandableList.setItemAnimator(new ExpandItemAnimator());
     }
 }
