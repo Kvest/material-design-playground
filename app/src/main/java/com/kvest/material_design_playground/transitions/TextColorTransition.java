@@ -3,20 +3,35 @@ package com.kvest.material_design_playground.transitions;
 import android.animation.Animator;
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.transition.Transition;
-import android.support.transition.TransitionValues;
-import android.transition.ChangeBounds;
+import android.transition.Transition;
+import android.transition.TransitionValues;
+import android.util.AttributeSet;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.kvest.material_design_playground.R;
 
 /**
  * Created by kvest on 10/14/16.
  */
+@TargetApi(Build.VERSION_CODES.KITKAT)
 public class TextColorTransition extends Transition {
     private static final String PROPNAME_TEXT_COLOR = "kvest:textColorTransition:textColor";
     private static final String[] TRANSITION_PROPERTIES = {PROPNAME_TEXT_COLOR};
+
+    public TextColorTransition() {
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public TextColorTransition(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
     @Nullable
     @Override
@@ -26,15 +41,26 @@ public class TextColorTransition extends Transition {
 
     @Override
     public void captureEndValues(@NonNull TransitionValues transitionValues) {
-        if (transitionValues.view instanceof TextView) {
-            transitionValues.values.put(PROPNAME_TEXT_COLOR, ((TextView) transitionValues.view).getCurrentTextColor());
-        }
+        captureValues(transitionValues);
     }
 
     @Override
     public void captureStartValues(@NonNull TransitionValues transitionValues) {
+        captureValues(transitionValues);
+    }
+
+    private void captureValues(@NonNull TransitionValues transitionValues) {
         if (transitionValues.view instanceof TextView) {
-            transitionValues.values.put(PROPNAME_TEXT_COLOR, ((TextView) transitionValues.view).getCurrentTextColor());
+            Bundle extraData = (Bundle)transitionValues.view.getTag(R.id.tag_transition_extra_properties);
+
+            int color;
+            if (extraData != null && extraData.containsKey(PROPNAME_TEXT_COLOR)) {
+                color = extraData.getInt(PROPNAME_TEXT_COLOR);
+            } else {
+                color = ((TextView) transitionValues.view).getCurrentTextColor();
+            }
+
+            transitionValues.values.put(PROPNAME_TEXT_COLOR, color);
         }
     }
 
@@ -51,12 +77,16 @@ public class TextColorTransition extends Transition {
         final TextView textView = (TextView)endValues.view;
         final ArgbEvaluator argbEvaluator = new ArgbEvaluator();
 
-        ValueAnimator animator = ValueAnimator.ofFloat(0, 1.0f).setDuration(2000);
+        ValueAnimator animator = ValueAnimator.ofFloat(0, 1.0f);
         animator.addUpdateListener(animation -> {
             int color = (Integer)argbEvaluator.evaluate(animation.getAnimatedFraction(), startTextColor, endTextColor);
             textView.setTextColor(color);
         });
 
         return animator;
+    }
+
+    public static void addExtraProperties(TextView view, Bundle extra) {
+        extra.putInt(PROPNAME_TEXT_COLOR, view.getCurrentTextColor());
     }
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,7 +76,6 @@ public class ExpandingListAdapter extends RecyclerView.Adapter<ExpandingListAdap
 
         public ViewHolder(ViewGroup parent, View itemView) {
             super(itemView);
-            Log.d("KVEST_TAG", "Create ViewHolder: ");
             image = (ImageView)itemView.findViewById(R.id.image);
             name = (TextView)itemView.findViewById(R.id.name);
             description = (TextView)itemView.findViewById(R.id.description);

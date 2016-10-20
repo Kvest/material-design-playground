@@ -27,5 +27,8 @@
         <activity
             android:name=".transitions.TransitionsActivity"
             android:label="@string/transitions" />
+        <activity
+            android:name=".transitions.ItemActivity"
+            android:theme="@style/AppTheme.ItemActivity"/>
     </application>
 </manifest>

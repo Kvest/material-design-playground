@@ -21,4 +21,26 @@
         android:layout_alignBaseline="@id/target"
         android:layout_alignParentRight="true"
         android:text="Change color"/>
+
+    <include
+        android:id="@+id/chameleon"
+        layout="@layout/item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/change_color"
+        android:layout_marginTop="12dip"/>
+    <include
+        android:id="@+id/rock"
+        layout="@layout/item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/chameleon"
+        android:layout_marginTop="12dip"/>
+    <include
+        android:id="@+id/flower"
+        layout="@layout/item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rock"
+        android:layout_marginTop="12dip"/>
 </RelativeLayout>

@@ -1,16 +1,18 @@
 package com.kvest.material_design_playground.transitions;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
-import android.support.transition.TransitionManager;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.TransitionManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import petrov.kristiyan.colorpicker.ColorPicker;
 
 import com.kvest.material_design_playground.R;
-
-import petrov.kristiyan.colorpicker.ColorPicker;
+import com.kvest.material_design_playground.RingView;
 
 /**
  * Created by kvest on 10/13/16.
@@ -26,12 +28,28 @@ public class TransitionsActivity extends AppCompatActivity {
 
         root = (ViewGroup)findViewById(R.id.root);
         target = (TextView)findViewById(R.id.target);
-        findViewById(R.id.change_color).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectColor();
-            }
-        });
+        findViewById(R.id.change_color).setOnClickListener(v -> selectColor());
+
+        initItems();
+    }
+
+    private void initItems() {
+        final View chameleon = findViewById(R.id.chameleon);
+        ((TextView) chameleon.findViewById(R.id.name)).setText("Chameleon");
+        chameleon.setOnClickListener(v -> showItemActivity("Chameleon", R.drawable.chameleon, chameleon));
+
+        final View rock = findViewById(R.id.rock);
+        ((TextView) rock.findViewById(R.id.name)).setText("Rock");
+        rock.setOnClickListener(v -> showItemActivity("Rock", R.drawable.rock, rock));
+
+        final View flower = findViewById(R.id.flower);
+        ((TextView) flower.findViewById(R.id.name)).setText("Flower");
+        flower.setOnClickListener(v -> showItemActivity("Flower", R.drawable.flower, flower));
+    }
+
+    private void showItemActivity(String name, @DrawableRes int imageId, View itemRoot) {
+        ItemActivity.start(this, name, imageId, (TextView)itemRoot.findViewById(R.id.name),
+                                                (RingView) itemRoot.findViewById(R.id.marker));
     }
 
     private void selectColor() {
@@ -50,7 +68,10 @@ public class TransitionsActivity extends AppCompatActivity {
     }
 
     private void changeColor(int color) {
-        TransitionManager.beginDelayedTransition(root, new TextColorTransition());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            TransitionManager.beginDelayedTransition(root, new TextColorTransition());
+        }
+
         target.setTextColor(color);
     }
 }

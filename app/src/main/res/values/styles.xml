@@ -8,4 +8,16 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.ItemActivity">
+        <item name="android:windowActionBar">false</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+
+        <item name="android:windowSharedElementsUseOverlay">true</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/item_activity_shared_enter_transition</item>
+        <item name="android:windowSharedElementReenterTransition">@transition/item_activity_shared_return_transition</item>
+        <item name="android:windowEnterTransition">@transition/item_activity_enter_transition</item>
+        <item name="android:windowReenterTransition">@transition/item_activity_return_transition</item>
+    </style>
 </resources>

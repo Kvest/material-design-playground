@@ -2,12 +2,14 @@ package com.kvest.material_design_playground;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.transition.Transition;
-import android.support.transition.TransitionManager;
-import android.support.transition.TransitionValues;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Transition;
+import android.transition.TransitionManager;
+import android.transition.TransitionValues;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,12 +30,15 @@ public class TestActivity extends AppCompatActivity {
         root = (FrameLayout) findViewById(R.id.root);
 
         findViewById(R.id.show).setOnClickListener(v -> {
-            TransitionManager.beginDelayedTransition(root, new CustomTransition(findViewById(R.id.green)));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                TransitionManager.beginDelayedTransition(root, new CustomTransition(findViewById(R.id.green)));
+            }
         });
     }
 
     private static boolean f;
 
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     private class CustomTransition extends Transition {
 
 
