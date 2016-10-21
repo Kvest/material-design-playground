@@ -70,7 +70,7 @@ public class RingView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        tempBitmap = Bitmap.createBitmap(getWidth(), getWidth(), Bitmap.Config.ARGB_8888);
+        tempBitmap = Bitmap.createBitmap(Math.max(1, getWidth()), Math.max(1, getWidth()), Bitmap.Config.ARGB_4444);
         tempCanvas = new Canvas(tempBitmap);
     }
 
