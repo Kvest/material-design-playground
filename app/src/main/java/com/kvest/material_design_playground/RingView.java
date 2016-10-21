@@ -3,12 +3,9 @@ package com.kvest.material_design_playground;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -21,13 +18,10 @@ import android.view.View;
  */
 public class RingView extends View {
     private Paint circlePaint = new Paint();
-    private Paint maskPaint = new Paint();
-
-    private Bitmap tempBitmap;
-    private Canvas tempCanvas;
 
     private float outerCircleRadius = 0f;
     private float innerCircleRadius = 0f;
+    private float radius = 0;
 
     public RingView(Context context) {
         super(context);
@@ -63,28 +57,22 @@ public class RingView extends View {
             }
         }
 
-        circlePaint.setStyle(Paint.Style.FILL);
-        maskPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-    }
+        circlePaint.setStyle(Paint.Style.STROKE);
+        circlePaint.setAntiAlias(true);
 
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        tempBitmap = Bitmap.createBitmap(Math.max(1, getWidth()), Math.max(1, getWidth()), Bitmap.Config.ARGB_4444);
-        tempCanvas = new Canvas(tempBitmap);
+        recalculate();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        tempCanvas.drawColor(0xffffff, PorterDuff.Mode.CLEAR);
-        tempCanvas.drawCircle(getWidth() / 2, getHeight() / 2, outerCircleRadius, circlePaint);
-        tempCanvas.drawCircle(getWidth() / 2, getHeight() / 2, innerCircleRadius, maskPaint);
-        canvas.drawBitmap(tempBitmap, 0, 0, null);
+
+        canvas.drawCircle(getWidth() / 2, getHeight() / 2, radius, circlePaint);
     }
 
     public void setInnerCircleRadius(float innerCircleRadiusProgress) {
         this.innerCircleRadius = innerCircleRadiusProgress;
+        recalculate();
         invalidate();
     }
 
@@ -94,6 +82,7 @@ public class RingView extends View {
 
     public void setOuterCircleRadius(float outerCircleRadiusProgress) {
         this.outerCircleRadius = outerCircleRadiusProgress;
+        recalculate();
         invalidate();
     }
 
@@ -110,6 +99,11 @@ public class RingView extends View {
         invalidate();
     }
 
+    private void recalculate() {
+        circlePaint.setStrokeWidth(outerCircleRadius - innerCircleRadius);
+        radius = innerCircleRadius + (outerCircleRadius - innerCircleRadius) / 2;
+    }
+
     @Override
     protected Parcelable onSaveInstanceState() {
         Parcelable superState = super.onSaveInstanceState();
@@ -124,6 +118,7 @@ public class RingView extends View {
         innerCircleRadius = savedState.innerRadius;
         outerCircleRadius = savedState.outerRadius;
         circlePaint.setColor(savedState.color);
+        recalculate();
     }
 
 
