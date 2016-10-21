@@ -30,16 +30,17 @@ import java.util.List;
 public class ItemActivity extends AppCompatActivity {
     private static final String EXTRA_NAME = "extra.name";
     private static final String EXTRA_IMAGE_ID = "extra.imageId";
-    public static final String TRANSITION_ITEM_NAME = "name";
-    public static final String TRANSITION_ITEM_FRAME = "frame";
 
     public static void start(Activity context, String name, @DrawableRes int imageId,
                              TextView nameView, RingView frame) {
         Intent intent = new Intent(context, ItemActivity.class);
         putExtras(intent, name, imageId);
 
-        Pair<View, String> p1 = Pair.create(nameView, TRANSITION_ITEM_NAME);
-        Pair<View, String> p2 = Pair.create(frame, TRANSITION_ITEM_FRAME);
+        String transitionName = context.getString(R.string.transition_name);
+        String transitionFrame = context.getString(R.string.transition_frame);
+
+        Pair<View, String> p1 = Pair.create(nameView, transitionName);
+        Pair<View, String> p2 = Pair.create(frame, transitionFrame);
         Bundle options = ActivityOptionsCompat
                             .makeSceneTransitionAnimation(context, p1, p2)
                             .toBundle();
@@ -47,11 +48,11 @@ public class ItemActivity extends AppCompatActivity {
         //grab properties for custom
         Bundle nameExtra = new Bundle();
         TextColorTransition.addExtraProperties(nameView, nameExtra);
-        intent.putExtra(TRANSITION_ITEM_NAME, nameExtra);
+        intent.putExtra(transitionName, nameExtra);
 
         Bundle frameExtra = new Bundle();
         RingViewTransition.addExtraProperties(frame, frameExtra);
-        intent.putExtra(TRANSITION_ITEM_FRAME, frameExtra);
+        intent.putExtra(transitionFrame, frameExtra);
 
         context.startActivity(intent, options);
     }

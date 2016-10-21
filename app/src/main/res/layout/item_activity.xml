@@ -21,7 +21,7 @@
             android:layout_gravity="center"
             app:inner_radius="33dip"
             app:outer_radius="35dip"
-            android:transitionName="frame"/>
+            android:transitionName="@string/transition_frame"/>
     </FrameLayout>
     <TextView
         android:id="@+id/name"
@@ -32,7 +32,7 @@
         android:textStyle="bold"
         android:textSize="22sp"
         android:textColor="#ffaa00"
-        android:transitionName="name"/>
+        android:transitionName="@string/transition_name"/>
     <TextView
         android:id="@+id/description"
         android:layout_width="match_parent"
