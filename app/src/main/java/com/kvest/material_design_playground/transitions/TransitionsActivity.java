@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Transition;
 import android.transition.TransitionManager;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +70,9 @@ public class TransitionsActivity extends AppCompatActivity {
 
     private void changeColor(int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            TransitionManager.beginDelayedTransition(root, new TextColorTransition());
+            Transition transition = new TextColorTransition();
+            transition.setDuration(getResources().getInteger(R.integer.anim_duration_default));
+            TransitionManager.beginDelayedTransition(root, transition);
         }
 
         target.setTextColor(color);

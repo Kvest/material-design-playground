@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
@@ -45,14 +46,18 @@ public class ItemActivity extends AppCompatActivity {
                             .makeSceneTransitionAnimation(context, p1, p2)
                             .toBundle();
 
-        //grab properties for custom
-        Bundle nameExtra = new Bundle();
-        TextColorTransition.addExtraProperties(nameView, nameExtra);
-        intent.putExtra(transitionName, nameExtra);
 
-        Bundle frameExtra = new Bundle();
-        RingViewTransition.addExtraProperties(frame, frameExtra);
-        intent.putExtra(transitionFrame, frameExtra);
+        //Transition classes available only from KITKAT version
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            //grab properties for custom transitions
+            Bundle nameExtra = new Bundle();
+            TextColorTransition.addExtraProperties(nameView, nameExtra);
+            intent.putExtra(transitionName, nameExtra);
+
+            Bundle frameExtra = new Bundle();
+            RingViewTransition.addExtraProperties(frame, frameExtra);
+            intent.putExtra(transitionFrame, frameExtra);
+        }
 
         context.startActivity(intent, options);
     }
