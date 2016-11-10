@@ -21,8 +21,6 @@ public class VectorAnimationActivity extends AppCompatActivity {
 
         image = (ImageView) findViewById(R.id.image);
 
-        findViewById(R.id.animate).setOnClickListener(v -> {
-            ((AnimatedVectorDrawable) image.getDrawable()).start();
-        });
+        findViewById(R.id.animate).setOnClickListener(v -> ((AnimatedVectorDrawable) image.getDrawable()).start());
     }
 }

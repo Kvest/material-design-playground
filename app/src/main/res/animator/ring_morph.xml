@@ -3,8 +3,8 @@
     <objectAnimator
         android:duration="800"
         android:propertyName="pathData"
-        android:valueFrom="@string/start_ring"
-        android:valueTo="@string/finish_ring"
+        android:valueFrom="@string/path_start_ring"
+        android:valueTo="@string/path_finish_ring"
         android:valueType="pathType"
         android:interpolator="@android:anim/accelerate_interpolator"/>
     <objectAnimator

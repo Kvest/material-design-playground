@@ -1,0 +1,10 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:height="100dp"
+    android:width="100dp"
+    android:viewportHeight="500"
+    android:viewportWidth="500" >
+    <path
+        android:name="heart"
+        android:strokeColor="#91DC5A"
+        android:pathData="@string/path_heart_inner"/>
+</vector>

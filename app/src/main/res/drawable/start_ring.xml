@@ -7,5 +7,5 @@
     <path
         android:name="ring"
         android:fillColor="#000000"
-        android:pathData="@string/start_ring" />
+        android:pathData="@string/path_start_ring" />
 </vector>

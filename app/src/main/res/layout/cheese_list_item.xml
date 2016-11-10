@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="@dimen/cheese_item_height"
     android:background="@android:color/white"
     android:clickable="true"
     android:foreground="?android:selectableItemBackground"
@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="12dip"
+        android:layout_gravity="center_vertical"
         android:textColor="#2b2b2b"
         android:textSize="18sp"/>
 </FrameLayout>

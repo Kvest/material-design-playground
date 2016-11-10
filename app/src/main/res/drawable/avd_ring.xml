@@ -3,6 +3,6 @@
     android:drawable="@drawable/start_ring">
     <target
         android:name="ring"
-        android:animation="@anim/ring_morph">
+        android:animation="@animator/ring_morph">
     </target>
 </animated-vector>

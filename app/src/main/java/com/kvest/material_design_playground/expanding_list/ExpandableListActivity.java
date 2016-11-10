@@ -3,10 +3,10 @@ package com.kvest.material_design_playground.expanding_list;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import com.kvest.material_design_playground.DividerDecoration;
 import com.kvest.material_design_playground.R;
 
 /**
@@ -23,5 +23,6 @@ public class ExpandableListActivity extends AppCompatActivity {
         expandableList.setLayoutManager(new LinearLayoutManager(this));
         expandableList.setAdapter(new ExpandingListAdapter(this));
         expandableList.setItemAnimator(new ExpandItemAnimator());
+        expandableList.addItemDecoration(new DividerItemDecoration(expandableList.getContext(), LinearLayoutManager.VERTICAL));
     }
 }

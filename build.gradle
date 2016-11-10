@@ -13,13 +13,13 @@ buildscript {
 }
 
 ext {
-    buildToolsVersion = "24.0.2"
+    buildToolsVersion = "25.0.0"
     minSdkVersion = 17
     targetSdkVersion = 24
-    compileSdkVersion = 24
+    compileSdkVersion = 25
     versionCode = 1
     versionName = '0.1'
-    supportLibVersion = '24.2.1'
+    supportLibVersion = '25.0.0'
 }
 
 allprojects {

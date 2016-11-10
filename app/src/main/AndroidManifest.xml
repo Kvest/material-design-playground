@@ -30,5 +30,8 @@
         <activity
             android:name=".transitions.ItemActivity"
             android:theme="@style/AppTheme.ItemActivity"/>
+        <activity
+            android:name=".undo_list.UndoListActivity"
+            android:label="@string/undo_list"/>
     </application>
 </manifest>

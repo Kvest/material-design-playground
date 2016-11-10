@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@android:color/white"
-        android:src="@drawable/animated_ring"/>
+        android:src="@drawable/avd_star_to_heart"/>
     <Button
         android:id="@+id/animate"
         android:layout_width="match_parent"
