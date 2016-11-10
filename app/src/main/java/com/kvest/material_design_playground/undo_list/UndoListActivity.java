@@ -30,8 +30,7 @@ public class UndoListActivity extends AppCompatActivity {
         list.setLayoutManager(new LinearLayoutManager(this));
         adapter = new UndoListAdapter(this);
         list.setAdapter(adapter);
-
-        //add divider for the list
+        list.setItemAnimator(new SwipeToDismissItemAnimator());
         list.addItemDecoration(new DividerItemDecoration(list.getContext(), LinearLayoutManager.VERTICAL));
 
         //setup "swipe to dismiss"
@@ -59,6 +58,7 @@ public class UndoListActivity extends AppCompatActivity {
                 });
         itemTouchHelper.attachToRecyclerView(list);
 
+        //hide "undo" when user starts to scroll the list
         list.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -70,5 +70,6 @@ public class UndoListActivity extends AppCompatActivity {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {}
         });
+
     }
 }
