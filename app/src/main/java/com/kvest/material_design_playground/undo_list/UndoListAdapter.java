@@ -90,7 +90,7 @@ public class UndoListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     private void undoDeletion() {
         if (currentDeletedItemPosition != -1) {
             items.set(currentDeletedItemPosition, currentDeletedItem.item);
-            notifyItemChanged(currentDeletedItemPosition);
+            notifyItemChanged(currentDeletedItemPosition, Constants.UNDO_PAYLOAD);
 
             currentDeletedItem.setItem(null);
             currentDeletedItemPosition = -1;

@@ -30,7 +30,7 @@ public class UndoListActivity extends AppCompatActivity {
         list.setLayoutManager(new LinearLayoutManager(this));
         adapter = new UndoListAdapter(this);
         list.setAdapter(adapter);
-        list.setItemAnimator(new SwipeToDismissItemAnimator());
+        list.setItemAnimator(new UndoItemAnimator());
         list.addItemDecoration(new DividerItemDecoration(list.getContext(), LinearLayoutManager.VERTICAL));
 
         //setup "swipe to dismiss"
