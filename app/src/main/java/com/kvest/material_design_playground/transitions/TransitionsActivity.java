@@ -35,16 +35,25 @@ public class TransitionsActivity extends AppCompatActivity {
     }
 
     private void initItems() {
+        String transitionName = getString(R.string.transition_name);
+        String transitionFrame = getString(R.string.transition_frame);
+
         final View chameleon = findViewById(R.id.chameleon);
         ((TextView) chameleon.findViewById(R.id.name)).setText("Chameleon");
+        setTransitionName(chameleon.findViewById(R.id.name), transitionName + "chameleon");
+        setTransitionName(chameleon.findViewById(R.id.marker), transitionFrame + "chameleon");
         chameleon.setOnClickListener(v -> showItemActivity("Chameleon", R.drawable.chameleon, chameleon));
 
         final View rock = findViewById(R.id.rock);
         ((TextView) rock.findViewById(R.id.name)).setText("Rock");
+        setTransitionName(rock.findViewById(R.id.name), transitionName + "rock");
+        setTransitionName(rock.findViewById(R.id.marker), transitionFrame + "rock");
         rock.setOnClickListener(v -> showItemActivity("Rock", R.drawable.rock, rock));
 
         final View flower = findViewById(R.id.flower);
         ((TextView) flower.findViewById(R.id.name)).setText("Flower");
+        setTransitionName(flower.findViewById(R.id.name), transitionName + "flower");
+        setTransitionName(flower.findViewById(R.id.marker), transitionFrame + "flower");
         flower.setOnClickListener(v -> showItemActivity("Flower", R.drawable.flower, flower));
     }
 
@@ -76,5 +85,11 @@ public class TransitionsActivity extends AppCompatActivity {
         }
 
         target.setTextColor(color);
+    }
+
+    private void setTransitionName(View view, String transitionName) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            view.setTransitionName(transitionName);
+        }
     }
 }

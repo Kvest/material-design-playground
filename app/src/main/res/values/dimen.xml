@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="default_padding">12dip</dimen>
-    <dimen name="samples_item_height">60dip</dimen>
-    <dimen name="samples_item_text_size">16sp</dimen>
-    <dimen name="samples_item_divider_height">1dip</dimen>
-</resources>
