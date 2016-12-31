@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.kvest.material_design_playground.expanding_list.ExpandableListActivity;
 import com.kvest.material_design_playground.item_selection.ItemSelectionActivity;
+import com.kvest.material_design_playground.shared_view_pool.SharedViewPoolActivity;
 import com.kvest.material_design_playground.transitions.TransitionsActivity;
 import com.kvest.material_design_playground.undo_list.UndoListActivity;
 import com.kvest.material_design_playground.vector_animation.VectorAnimationActivity;
@@ -23,7 +24,8 @@ public class SamplesAdapter extends RecyclerView.Adapter<SamplesAdapter.ViewHold
             new Item("Item selection", ItemSelectionActivity.class),
             new Item("Vector animation", VectorAnimationActivity.class),
             new Item("Transitions", TransitionsActivity.class),
-            new Item("Undo list", UndoListActivity.class)
+            new Item("Undo list", UndoListActivity.class),
+            new Item("Shared RecycledViewPool", SharedViewPoolActivity.class)
     };
     private Context context;
     private final LayoutInflater layoutInflater;
