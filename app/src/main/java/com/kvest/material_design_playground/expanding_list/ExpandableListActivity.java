@@ -22,7 +22,9 @@ public class ExpandableListActivity extends AppCompatActivity {
         expandableList.setHasFixedSize(true);
         expandableList.setLayoutManager(new LinearLayoutManager(this));
         expandableList.setAdapter(new ExpandingListAdapter(this));
-        expandableList.setItemAnimator(new ExpandItemAnimator());
+        ExpandItemAnimator animator = new ExpandItemAnimator();
+        animator.setMoveDuration(4000);
+        expandableList.setItemAnimator(animator);
         expandableList.addItemDecoration(new DividerItemDecoration(expandableList.getContext(), LinearLayoutManager.VERTICAL));
     }
 }
