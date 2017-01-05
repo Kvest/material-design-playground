@@ -3,6 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#cccccc">
+
+    <ImageView
+        android:id="@+id/searchback"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="left|top"
+        android:contentDescription="@null"
+        android:padding="16dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/asl_trimclip_searchback"/>
+
     <ImageView
         android:id="@+id/image"
         android:layout_width="wrap_content"
